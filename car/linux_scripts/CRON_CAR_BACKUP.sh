@@ -1,0 +1,1 @@
+* 0 * * *       root    sudo bash /home/mingtai/car_data/backup_database.sh
