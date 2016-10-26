@@ -1,0 +1,13 @@
+1. 準備一個data volume用來放永久保存檔案，實體檔案存在host硬碟上面。
+
+1a. 若是用Windows，必須先讓docker machine的永久儲存資料放在windows folder上
+
+docker-machine ssh ==> 進入docker machine
+sudo mkdir -p /hostdata
+sudo mount -t vboxsf programming /hostdata  -> programming要先在Virtualbox自動掛載上去. 此時hostdata就是直通永久儲存的Windows disk
+docker create -v /hostdata:/hostdata --name nk2016_data ubuntu  
+
+2. 啟動python webserver container
+docker run --rm -ti --name nk2016_webserver -p 8080:8080 --volumes-from nk2016_data mantisa1980/nk2016_webserver /bin/bash
+
+
